@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Priyansh Tyagi — Product Manager</title>
   <meta name="description" content="Priyansh Tyagi — Product Manager with 2+ years of fintech experience driving data-led conversion growth at Paisabazaar." />
+  <!-- Preconnect to Google Fonts origin early -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Non-blocking font load: page paints immediately with system fonts, Inter swaps in silently -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=optional" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=optional" /></noscript>
+  <!-- Critical styles load synchronously -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
