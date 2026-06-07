@@ -513,6 +513,9 @@ body:has(.btn:hover) .cursor-follower { background: var(--accent-dim); width: 56
   overflow: hidden;
 }
 
+/* 3-group layout — each group fills its column */
+.skills-grid .skill-group { min-height: 160px; }
+
 .skill-group {
   background: var(--bg-2);
   padding: 36px 32px;
@@ -656,6 +659,19 @@ body:has(.btn:hover) .cursor-follower { background: var(--accent-dim); width: 56
   color: var(--text);
   font-weight: 600;
 }
+
+/* Sub-section label inside timeline card (e.g. Partnerships / Central Platform) */
+.timeline-subsection {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 20px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(200, 255, 110, 0.1);
+}
+.timeline-subsection:first-of-type { margin-top: 12px; }
 
 .timeline-tech {
   display: flex;
@@ -963,7 +979,7 @@ body:has(.btn:hover) .cursor-follower { background: var(--accent-dim); width: 56
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-right { flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 24px; }
   .about-awards { flex: 1; min-width: 260px; }
-  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .skills-grid { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
   .project-card.featured { grid-column: 1; }
   .project-highlights { grid-template-columns: repeat(3, 1fr); }
