@@ -344,24 +344,33 @@
               </div>
             </div>
             <p class="project-desc">
-              Conceptualized and launched <a href="https://myfingrid.com" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-weight:600;">MyFinGrid</a> — a personal finance platform spanning <strong>6+ modules</strong> including budgeting, net worth tracking, goal planning, analytics, and credit card recommendations. Built financial planning and recommendation workflows covering projections and <strong>120+ credit cards</strong>, leveraging AI-assisted development to rapidly prototype, validate, and launch features.
+              Production-grade personal finance platform built for India — full-stack, deployed live on Vercel. Spans <strong>7 modules</strong> with a proprietary credit card engine, Gemini AI integration, Gmail bank-email parsing, and a pure TypeScript goals engine — all backed by <strong>230 unit tests</strong>.
             </p>
+
+            <ul class="project-bullets">
+              <li><strong>CredWise</strong> — Proprietary ENVS algorithm ranking <strong>120+ Indian credit cards</strong> by net annual rupee value, with eligibility filtering, spend-weighted scoring, fee waiver achievability, and sign-up bonus amortization.</li>
+              <li><strong>Goals Engine</strong> — SIP projection with monthly compounding, blended return calc, inverse SIP, and Gemini AI-backed recommendations. Covered by <strong>159 unit tests</strong>.</li>
+              <li><strong>Smart Import</strong> — 3 methods: CSV upload with column auto-mapping, Gmail OAuth scan parsing <strong>15+ Indian bank</strong> email formats via Gemini AI, and SMS paste parsing.</li>
+              <li><strong>Split & Share</strong> — Group expense splitting (equal, exact, %, shares) with settlement minimization, email invites via Resend, and rate limiting (15 invites/min).</li>
+              <li><strong>Platform</strong> — 61 API routes · Row-Level Security (Supabase) · HSTS + CSP + Turnstile CAPTCHA · CI/CD auto-deploy on merge to main.</li>
+            </ul>
+
             <div class="project-highlights">
               <div class="highlight-item">
-                <span class="highlight-num">6+</span>
-                <span class="highlight-label">Modules — budgeting, net worth, goals, analytics, credit cards</span>
-              </div>
-              <div class="highlight-item">
                 <span class="highlight-num">120+</span>
-                <span class="highlight-label">Credit cards covered with recommendation engine</span>
+                <span class="highlight-label">Indian credit cards ranked by proprietary ENVS algorithm</span>
               </div>
               <div class="highlight-item">
-                <span class="highlight-num">AI</span>
-                <span class="highlight-label">AI-assisted development to prototype and launch fast</span>
+                <span class="highlight-num">230</span>
+                <span class="highlight-label">Unit tests across goals engine, rate limiting & currency math</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-num">61</span>
+                <span class="highlight-label">API routes with CI/CD, RLS, and security hardening</span>
               </div>
             </div>
             <div class="project-tech">
-              <span>Product Strategy</span><span>Personal Finance</span><span>AI-Assisted Dev</span><span>Supabase</span><span>Vercel</span>
+              <span>Next.js 14</span><span>TypeScript</span><span>Supabase</span><span>Prisma</span><span>Clerk</span><span>Gemini AI</span><span>Gmail API</span><span>Vercel</span>
             </div>
           </div>
         </div>

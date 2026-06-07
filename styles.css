@@ -775,11 +775,42 @@ body:has(.btn:hover) .cursor-follower { background: var(--accent-dim); width: 56
   font-size: 15px;
   color: var(--text-muted);
   line-height: 1.7;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   flex: 1;
 }
 
 .project-desc strong { color: var(--text); font-weight: 600; }
+
+/* Bullet list inside featured project card */
+.project-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.project-bullets li {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.65;
+  padding-left: 18px;
+  position: relative;
+}
+
+.project-bullets li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 11px;
+  top: 4px;
+}
+
+.project-bullets li strong {
+  color: var(--text);
+  font-weight: 600;
+}
 
 /* Highlights row for featured project */
 .project-highlights {
