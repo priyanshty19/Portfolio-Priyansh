@@ -731,8 +731,8 @@ body:has(.btn:hover) .cursor-follower { background: var(--accent-dim); width: 56
 
 .project-desc {
   font-size: 15px;
-  color: var(--text-muted);
-  line-height: 1.7;
+  color: #aaa;
+  line-height: 1.75;
   margin-bottom: 20px;
   flex: 1;
 }
@@ -807,11 +807,11 @@ body:has(.btn:hover) .cursor-follower { background: var(--accent-dim); width: 56
 
 .project-tech span {
   padding: 4px 10px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 100px;
   font-size: 12px;
-  color: var(--text-faint);
+  color: var(--text-muted);
   font-weight: 500;
 }
 
