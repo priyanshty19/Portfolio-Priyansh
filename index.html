@@ -108,6 +108,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Work</a></li>
+        <li><a href="#building">Building</a></li>
         <li><a href="#contact">Contact</a></li>
         <li>
           <a href="resume.pdf" download class="nav-resume-btn">
@@ -125,6 +126,7 @@
         <li><a href="#about" class="mobile-link">About</a></li>
         <li><a href="#experience" class="mobile-link">Experience</a></li>
         <li><a href="#projects" class="mobile-link">Work</a></li>
+        <li><a href="#building" class="mobile-link">Building</a></li>
         <li><a href="#contact" class="mobile-link">Contact</a></li>
         <li><a href="resume.pdf" download class="mobile-link mobile-resume">Download Resume</a></li>
       </ul>
@@ -380,10 +382,64 @@
     </div>
   </section>
 
+  <!-- Currently Building -->
+  <section class="building section" id="building">
+    <div class="container">
+      <div class="section-label reveal">05 — Currently Building</div>
+      <h2 class="section-heading reveal">What I'm shipping <em>right now</em></h2>
+      <p class="building-sub reveal">Public work in progress — updates live from GitHub. When something ships, it moves to projects.</p>
+
+      <!-- GitHub Contribution Heatmap -->
+      <div class="gh-activity reveal">
+        <div class="gh-activity-top">
+          <div class="gh-activity-stat">
+            <span class="gh-count" id="ghTotalCount">—</span>
+            <span class="gh-count-label">contributions in the last year</span>
+          </div>
+          <a href="https://github.com/priyanshty19" target="_blank" rel="noopener" class="gh-profile-link">
+            @priyanshty19
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+        <div class="gh-calendar-scroll">
+          <div class="gh-calendar-wrap">
+            <div class="gh-day-labels">
+              <span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span>
+            </div>
+            <div class="gh-calendar" id="ghCalendar"><!-- JS rendered --></div>
+          </div>
+        </div>
+        <div class="gh-legend">
+          <span class="gh-legend-text">Less</span>
+          <span class="gh-legend-cell" data-level="0"></span>
+          <span class="gh-legend-cell" data-level="1"></span>
+          <span class="gh-legend-cell" data-level="2"></span>
+          <span class="gh-legend-cell" data-level="3"></span>
+          <span class="gh-legend-cell" data-level="4"></span>
+          <span class="gh-legend-text">More</span>
+        </div>
+      </div>
+
+      <!-- WIP Repo Cards -->
+      <div class="wip-grid" id="wipGrid">
+        <div class="wip-skeleton"></div>
+        <div class="wip-skeleton"></div>
+        <div class="wip-skeleton"></div>
+      </div>
+
+      <div class="building-cta reveal">
+        <a href="https://github.com/priyanshty19" target="_blank" rel="noopener" class="btn btn-secondary">
+          View all repos on GitHub
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- Education -->
   <section class="education section" id="education">
     <div class="container">
-      <div class="section-label reveal">05 — Education</div>
+      <div class="section-label reveal">06 — Education</div>
       <h2 class="section-heading reveal">Academic background</h2>
       <div class="edu-grid">
         <div class="edu-card reveal">
@@ -403,7 +459,7 @@
   <!-- Contact -->
   <section class="contact section" id="contact">
     <div class="container">
-      <div class="section-label reveal">06 — Contact</div>
+      <div class="section-label reveal">07 — Contact</div>
       <div class="contact-inner">
         <h2 class="contact-heading reveal">Let's build<br /><em>something great.</em></h2>
         <p class="contact-sub reveal">
