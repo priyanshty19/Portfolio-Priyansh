@@ -387,7 +387,7 @@
     <div class="container">
       <div class="section-label reveal">05 — Currently Building</div>
       <h2 class="section-heading reveal">What I'm shipping <em>right now</em></h2>
-      <p class="building-sub reveal">Public work in progress — updates live from GitHub. When something ships, it moves to projects.</p>
+      <p class="building-sub reveal">Things actively in development — some live, some in the lab. When something ships, it graduates to Projects.</p>
 
       <!-- GitHub Contribution Heatmap -->
       <div class="gh-activity reveal">
@@ -420,19 +420,65 @@
         </div>
       </div>
 
-      <!-- WIP Repo Cards -->
-      <div class="wip-grid" id="wipGrid">
-        <div class="wip-skeleton"></div>
-        <div class="wip-skeleton"></div>
-        <div class="wip-skeleton"></div>
+      <!-- Private Repos -->
+      <div class="build-group reveal">
+        <div class="build-group-hdr">
+          <div class="build-group-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Private Repos
+          </div>
+          <span class="build-group-note">Actively built — not yet open source</span>
+        </div>
+        <div class="build-private-grid">
+
+          <!-- FinGrid -->
+          <div class="build-card">
+            <div class="build-card-top">
+              <span class="build-status build-status--live">Live</span>
+              <a href="https://myfingrid.com" target="_blank" rel="noopener" class="build-card-link">
+                myfingrid.com
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+            <h3 class="build-name">FinGrid</h3>
+            <p class="build-desc">Full-stack personal finance platform for India. Credit card intelligence engine (120+ cards), AI-powered bank email parsing, SIP goal projections, and group expense splitting — all production deployed.</p>
+            <div class="build-tags">
+              <span>Next.js 14</span><span>TypeScript</span><span>Supabase</span><span>Gemini AI</span><span>Clerk</span>
+            </div>
+          </div>
+
+          <!-- MARC -->
+          <div class="build-card">
+            <div class="build-card-top">
+              <span class="build-status build-status--dev">In Dev</span>
+            </div>
+            <h3 class="build-name">MARC</h3>
+            <p class="build-desc">Private project currently in active development. Details coming soon.</p>
+            <div class="build-tags"></div>
+          </div>
+
+        </div>
       </div>
 
-      <div class="building-cta reveal">
-        <a href="https://github.com/priyanshty19" target="_blank" rel="noopener" class="btn btn-secondary">
-          View all repos on GitHub
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        </a>
+      <!-- Public Repos -->
+      <div class="build-group">
+        <div class="build-group-hdr reveal">
+          <div class="build-group-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            Public Repos
+          </div>
+          <a href="https://github.com/priyanshty19" target="_blank" rel="noopener" class="build-group-action">
+            github.com/priyanshty19
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+        <div class="build-public-grid" id="wipGrid">
+          <div class="wip-skeleton"></div>
+          <div class="wip-skeleton"></div>
+          <div class="wip-skeleton"></div>
+        </div>
       </div>
+
     </div>
   </section>
 

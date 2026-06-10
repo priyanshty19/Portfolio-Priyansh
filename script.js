@@ -114,10 +114,19 @@ const sectionObserver = new IntersectionObserver((entries) => {
 sections.forEach(s => sectionObserver.observe(s));
 
 // ─── GitHub Activity Section ──────────────────────────────────────
-const GH_USER = 'priyanshty19';
-const REPO_EXCLUDE = new Set(['Portfolio-Priyansh', 'priyanshty19', 'IEEE-DELHI-SSN', '100-Days-of-Code']);
+const GH_USER        = 'priyanshty19';
+const PUBLIC_REPOS   = ['PlaceStacks', 'personal-yt', 'military-morning-tracker'];
 
-// Language → dot color map
+// Manual overrides (fill gaps in GitHub API descriptions)
+const REPO_META = {
+  'military-morning-tracker': {
+    desc:   'Military-style morning routine tracker — structured daily check-ins built to enforce discipline and log habit consistency.',
+    status: 'In Dev'
+  },
+  'PlaceStacks':  { status: 'In Dev' },
+  'personal-yt':  { status: 'In Dev' }
+};
+
 const LANG_COLORS = {
   JavaScript: '#f1e05a',
   TypeScript: '#3178c6',
@@ -127,8 +136,6 @@ const LANG_COLORS = {
   HTML:       '#e34c26',
   Rust:       '#dea584',
   Go:         '#00add8',
-  Java:       '#b07219',
-  Swift:      '#fa7343',
 };
 
 function relativeTime(dateStr) {
@@ -142,123 +149,107 @@ function relativeTime(dateStr) {
   return `${Math.floor(days / 365)}y ago`;
 }
 
+function titleCase(str) {
+  return str
+    .replace(/-/g, ' ')
+    .replace(/\byt\b/i, 'YT')
+    .split(' ')
+    .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
 function renderContributionGraph(contributions) {
   const calendar = document.getElementById('ghCalendar');
   const countEl  = document.getElementById('ghTotalCount');
   if (!calendar) return;
 
-  // Build date → level map
   const map = {};
   let total = 0;
-  contributions.forEach(d => {
-    map[d.date] = d.level;
-    total += d.count;
-  });
-
+  contributions.forEach(d => { map[d.date] = d.level; total += d.count; });
   if (countEl) countEl.textContent = total.toLocaleString();
 
-  // Start on the Sunday 52 full weeks ago
+  // Start on the nearest Sunday ≥ 52 weeks ago
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const start = new Date(today);
   start.setDate(today.getDate() - 52 * 7 + 1);
-  // Roll back to the nearest Sunday
-  start.setDate(start.getDate() - start.getDay());
+  start.setDate(start.getDate() - start.getDay()); // snap to Sunday
 
   const cells = [];
-  const cursor = new Date(start);
-  while (cursor <= today) {
-    const iso = cursor.toISOString().slice(0, 10);
-    const level = map[iso] !== undefined ? map[iso] : 0;
-    cells.push({ iso, level });
-    cursor.setDate(cursor.getDate() + 1);
+  const cur = new Date(start);
+  while (cur <= today) {
+    const iso = cur.toISOString().slice(0, 10);
+    cells.push({ iso, level: map[iso] !== undefined ? map[iso] : 0 });
+    cur.setDate(cur.getDate() + 1);
   }
-  // Pad to complete the last column (week)
-  while (cells.length % 7 !== 0) {
-    cells.push({ iso: '', level: -1 }); // future/empty
-  }
+  while (cells.length % 7 !== 0) cells.push({ iso: '', level: -1 });
 
-  calendar.innerHTML = cells.map(c => {
-    if (c.level === -1) return '<span class="gh-cell future"></span>';
-    return `<span class="gh-cell" data-level="${c.level}" title="${c.iso}"></span>`;
-  }).join('');
+  calendar.innerHTML = cells.map(c =>
+    c.level === -1
+      ? '<span class="gh-cell future"></span>'
+      : `<span class="gh-cell" data-level="${c.level}" title="${c.iso}"></span>`
+  ).join('');
 }
 
-function renderWIPRepos(repos) {
+function renderPublicRepos(repos) {
   const grid = document.getElementById('wipGrid');
   if (!grid) return;
 
-  const filtered = repos
-    .filter(r => !REPO_EXCLUDE.has(r.name))
-    .filter(r => r.description || r.language) // must have something to show
-    .slice(0, 6);
+  if (!repos.length) { grid.innerHTML = ''; return; }
 
-  if (filtered.length === 0) {
-    grid.innerHTML = '<p style="color:var(--text-muted);grid-column:1/-1">No public repos to show right now.</p>';
-    return;
-  }
-
-  const langDot = lang => LANG_COLORS[lang]
-    ? `<span class="wip-lang"><span class="wip-lang-dot" style="background:${LANG_COLORS[lang]}"></span>${lang}</span>`
-    : '';
-
-  grid.innerHTML = filtered.map(r => {
-    const name = r.name.replace(/-/g, ' ');
-    const desc = r.description
-      ? (r.description.length > 90 ? r.description.slice(0, 90) + '…' : r.description)
-      : 'Work in progress.';
-    const updated = relativeTime(r.updated_at);
+  grid.innerHTML = repos.map(r => {
+    const meta    = REPO_META[r.name] || {};
+    const desc    = meta.desc || r.description || 'Work in progress.';
+    const status  = meta.status || 'In Dev';
+    const lang    = r.language || '';
+    const dot     = LANG_COLORS[lang]
+      ? `<span class="build-pub-lang-dot" style="background:${LANG_COLORS[lang]}"></span>`
+      : '';
+    const descShort = desc.length > 88 ? desc.slice(0, 88) + '…' : desc;
 
     return `
-      <a href="${r.html_url}" target="_blank" rel="noopener" class="wip-card reveal">
-        <div class="wip-card-header">
-          <svg class="wip-repo-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 19a9 9 0 0 1 9 0 9 9 0 0 1 9 0M3 6a9 9 0 0 1 9 0 9 9 0 0 1 9 0M3 6v13M12 6v13M21 6v13"/></svg>
-          <span class="wip-name">${name}</span>
-          <span class="wip-badge">WIP</span>
+      <a href="${r.html_url}" target="_blank" rel="noopener" class="build-pub-card reveal">
+        <div class="build-pub-header">
+          <span class="build-pub-name">${titleCase(r.name)}</span>
+          <span class="build-status build-status--dev">${status}</span>
         </div>
-        <p class="wip-desc">${desc}</p>
-        <div class="wip-footer">
-          ${r.language ? langDot(r.language) : '<span></span>'}
-          <span class="wip-updated">Updated ${updated}</span>
+        <p class="build-pub-desc">${descShort}</p>
+        <div class="build-pub-footer">
+          ${lang ? `<span class="build-pub-lang">${dot}${lang}</span>` : '<span></span>'}
+          <span class="build-pub-updated">Updated ${relativeTime(r.updated_at)}</span>
         </div>
       </a>`;
   }).join('');
 
-  // Register newly added cards with the scroll-reveal observer
-  grid.querySelectorAll('.wip-card').forEach((el, i) => {
-    el.dataset.delay = i * 60;
+  grid.querySelectorAll('.build-pub-card').forEach((el, i) => {
+    el.dataset.delay = i * 70;
     revealObserver.observe(el);
   });
 }
 
 async function loadGitHubActivity() {
+  // Heatmap
   try {
-    const [contribRes, reposRes] = await Promise.all([
-      fetch(`https://github-contributions-api.jogruber.de/v4/${GH_USER}?y=last`),
-      fetch(`https://api.github.com/users/${GH_USER}/repos?sort=updated&type=public&per_page=20`)
-    ]);
+    const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${GH_USER}?y=last`);
+    if (res.ok) renderContributionGraph((await res.json()).contributions || []);
+  } catch { /* silent */ }
 
-    if (contribRes.ok) {
-      const data = await contribRes.json();
-      renderContributionGraph(data.contributions || []);
-    }
-
-    if (reposRes.ok) {
-      const repos = await reposRes.json();
-      renderWIPRepos(repos);
-    } else {
-      // Clear skeletons even on failure
-      const grid = document.getElementById('wipGrid');
-      if (grid) grid.innerHTML = '';
-    }
+  // Curated public repos
+  try {
+    const repos = (await Promise.all(
+      PUBLIC_REPOS.map(name =>
+        fetch(`https://api.github.com/repos/${GH_USER}/${name}`)
+          .then(r => r.ok ? r.json() : null)
+          .catch(() => null)
+      )
+    )).filter(Boolean);
+    renderPublicRepos(repos);
   } catch {
-    // Network error — clear skeletons silently
-    const grid = document.getElementById('wipGrid');
-    if (grid) grid.innerHTML = '';
+    const g = document.getElementById('wipGrid');
+    if (g) g.innerHTML = '';
   }
 }
 
-// Kick off once DOM is ready
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', loadGitHubActivity);
 } else {
