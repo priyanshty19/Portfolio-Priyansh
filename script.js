@@ -115,7 +115,7 @@ sections.forEach(s => sectionObserver.observe(s));
 
 // ─── GitHub Activity Section ──────────────────────────────────────
 const GH_USER        = 'priyanshty19';
-const PUBLIC_REPOS   = ['PlaceStacks', 'personal-yt', 'military-morning-tracker'];
+const PUBLIC_REPOS   = ['PlaceStacks', 'personal-yt', 'military-morning-tracker', 'Sahej'];
 
 // Manual overrides (fill gaps in GitHub API descriptions)
 const REPO_META = {
