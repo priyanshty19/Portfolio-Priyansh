@@ -124,7 +124,8 @@ const REPO_META = {
     status: 'In Dev'
   },
   'PlaceStacks':  { status: 'In Dev' },
-  'personal-yt':  { status: 'In Dev' }
+  'personal-yt':  { status: 'Live' },
+  'Sahej':        { status: 'In Dev' }
 };
 
 const LANG_COLORS = {
@@ -211,7 +212,7 @@ function renderPublicRepos(repos) {
       <a href="${r.html_url}" target="_blank" rel="noopener" class="build-pub-card reveal">
         <div class="build-pub-header">
           <span class="build-pub-name">${titleCase(r.name)}</span>
-          <span class="build-status build-status--dev">${status}</span>
+          <span class="build-status ${status === 'Live' ? 'build-status--live' : 'build-status--dev'}">${status}</span>
         </div>
         <p class="build-pub-desc">${descShort}</p>
         <div class="build-pub-footer">
