@@ -159,38 +159,6 @@ function titleCase(str) {
     .join(' ');
 }
 
-function renderContributionGraph(contributions) {
-  const calendar = document.getElementById('ghCalendar');
-  const countEl  = document.getElementById('ghTotalCount');
-  if (!calendar) return;
-
-  const map = {};
-  let total = 0;
-  contributions.forEach(d => { map[d.date] = d.level; total += d.count; });
-  if (countEl) countEl.textContent = total.toLocaleString();
-
-  // Start on the nearest Sunday ≥ 52 weeks ago
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const start = new Date(today);
-  start.setDate(today.getDate() - 52 * 7 + 1);
-  start.setDate(start.getDate() - start.getDay()); // snap to Sunday
-
-  const cells = [];
-  const cur = new Date(start);
-  while (cur <= today) {
-    const iso = cur.toISOString().slice(0, 10);
-    cells.push({ iso, level: map[iso] !== undefined ? map[iso] : 0 });
-    cur.setDate(cur.getDate() + 1);
-  }
-  while (cells.length % 7 !== 0) cells.push({ iso: '', level: -1 });
-
-  calendar.innerHTML = cells.map(c =>
-    c.level === -1
-      ? '<span class="gh-cell future"></span>'
-      : `<span class="gh-cell" data-level="${c.level}" title="${c.iso}"></span>`
-  ).join('');
-}
 
 function renderPublicRepos(repos) {
   const grid = document.getElementById('wipGrid');
@@ -229,12 +197,6 @@ function renderPublicRepos(repos) {
 }
 
 async function loadGitHubActivity() {
-  // Heatmap
-  try {
-    const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${GH_USER}?y=last`);
-    if (res.ok) renderContributionGraph((await res.json()).contributions || []);
-  } catch { /* silent */ }
-
   // Curated public repos
   try {
     const repos = (await Promise.all(
