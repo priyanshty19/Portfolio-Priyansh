@@ -4,6 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- ── Theme (alternates dark/light on each visit, no-flash) ──────── -->
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var next;
+      if (stored === 'dark') next = 'light';
+      else if (stored === 'light') next = 'dark';
+      else next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    })();
+  </script>
+
   <!-- ── Primary SEO ──────────────────────────────────────────────── -->
   <title>Priyansh Tyagi — Product Manager | Founder of MyFinGrid</title>
   <meta name="description" content="Priyansh Tyagi is a Product Manager with 2+ years of fintech experience at Paisabazaar and PwC India. Founder of MyFinGrid — a personal finance platform built to help users track expenses, understand spending patterns, and improve financial planning." />
@@ -106,8 +119,8 @@
       <a href="#" class="nav-logo">PT</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#building">Building</a></li>
         <li><a href="#contact">Contact</a></li>
         <li>
@@ -117,6 +130,10 @@
           </a>
         </li>
       </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light theme">
+        <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -124,8 +141,8 @@
     <div class="nav-mobile" id="navMobile">
       <ul>
         <li><a href="#about" class="mobile-link">About</a></li>
-        <li><a href="#experience" class="mobile-link">Experience</a></li>
         <li><a href="#projects" class="mobile-link">Work</a></li>
+        <li><a href="#experience" class="mobile-link">Experience</a></li>
         <li><a href="#building" class="mobile-link">Building</a></li>
         <li><a href="#contact" class="mobile-link">Contact</a></li>
         <li><a href="resume.pdf" download class="mobile-link mobile-resume">Download Resume</a></li>
@@ -254,54 +271,10 @@
   </section>
 
   <!-- Experience -->
-  <section class="experience section" id="experience">
-    <div class="container">
-      <div class="section-label reveal">03 — Experience</div>
-      <h2 class="section-heading reveal">Where I've worked</h2>
-      <div class="timeline">
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-meta">
-              <span class="timeline-company">Paisabazaar · New Delhi</span>
-              <span class="timeline-period">May 2025 — Present</span>
-            </div>
-            <h3 class="timeline-role">Product Manager</h3>
-            <p class="timeline-para">
-              Building lending products that improve customer acquisition, onboarding, and conversion across a multi-partner fintech platform. Led platform initiatives spanning offer discovery, application tracking, and operational automation — driving measurable uplift across partner-integrated journeys.
-            </p>
-            <div class="timeline-tech">
-              <span>Lending Products</span><span>Conversion Optimization</span><span>Partner Integrations</span><span>Funnel Analysis</span><span>Roadmapping</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <div class="timeline-meta">
-              <span class="timeline-company">PwC India · New Delhi</span>
-              <span class="timeline-period">Aug 2023 — May 2025</span>
-            </div>
-            <h3 class="timeline-role">Associate Consultant</h3>
-            <p class="timeline-para">
-              Built a foundation in analytics, stakeholder management, and large-scale transformation through consulting engagements across data privacy, security operations, and enterprise SAP migration programs.
-            </p>
-            <div class="timeline-tech">
-              <span>Analytics</span><span>Stakeholder Management</span><span>PMO</span><span>Program Execution</span><span>DPDP Act</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- Projects & Leadership -->
   <section class="projects section" id="projects">
     <div class="container">
-      <div class="section-label reveal">04 — Projects & Leadership</div>
+      <div class="section-label reveal">03 — Projects & Leadership</div>
       <h2 class="section-heading reveal">Things I've built & led</h2>
       <div class="projects-grid">
 
@@ -351,9 +324,9 @@
         </div>
 
         <!-- Sip Stories -->
-        <div class="project-card reveal">
+        <div class="project-card featured reveal">
           <div class="project-card-inner">
-            <div class="project-num">Side Project</div>
+            <div class="project-num">Featured Project</div>
             <div class="project-top">
               <h3 class="project-title">Sip Stories</h3>
               <div class="project-links">
@@ -363,9 +336,34 @@
                 </a>
               </div>
             </div>
-            <p class="project-desc">Cocktail discovery and personal sip journal — helping enthusiasts track, rate, and explore their drink experiences. Production deployed and live.</p>
+            <p class="project-desc">
+              Pseudonymous social platform for India's drinking culture — full-stack, deployed live on Vercel. Spans a social feed, cocktail mixing, bar discovery, and an agentic AI bartender, wrapped in a dual-theme "Midnight Lounge" design system built under strict 21+ responsible-drinking guardrails.
+            </p>
+
+            <ul class="project-bullets">
+              <li><strong>James, the AI Bartender</strong> — Agentic in-app assistant (Groq Llama 3.3 70B) that doesn't just chat: it can change the app's vibe, navigate, and surface drink/cocktail cards via a directive action protocol, with responsible-drinking rules enforced on every action.</li>
+              <li><strong>Social Graph</strong> — Instagram-style share/send on posts, @mentions and tagging for circle members, and a live notifications bell tying together shares, tags, mentions, and RSVPs.</li>
+              <li><strong>Parties</strong> — Host a houseparty or bar night, invite circle-mates with RSVPs, or drop a public invite link that doubles as a referral — letting a newcomer join your circle and RSVP in one flow.</li>
+              <li><strong>Mix Lab & Hangover SOS</strong> — A cocktail-recipe mixing surface alongside a "when will I be sober" recovery calculator with India-specific remedies.</li>
+              <li><strong>Platform</strong> — Server-rendered feed, drinks, cocktails, bars & profile pages · role-based moderation & admin panel · dual Midnight Lounge (dark) / Ivory Cream (light) theme system.</li>
+            </ul>
+
+            <div class="project-highlights">
+              <div class="highlight-item">
+                <span class="highlight-num">69</span>
+                <span class="highlight-label">API routes powering feed, social graph, parties & the AI bartender</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-num">49</span>
+                <span class="highlight-label">Prisma data models spanning social, catalog & moderation domains</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-num">9</span>
+                <span class="highlight-label">Bespoke per-spirit SVG icons across cards, chat results & empty states</span>
+              </div>
+            </div>
             <div class="project-tech">
-              <span>Full-Stack</span><span>Cocktail Discovery</span><span>Sip Journal</span>
+              <span>Next.js</span><span>React</span><span>TypeScript</span><span>Prisma</span><span>Supabase</span><span>Tailwind CSS</span><span>Groq AI</span><span>Vercel</span>
             </div>
           </div>
         </div>
@@ -394,6 +392,51 @@
             <p class="project-desc">Drove financial planning and allocation decisions for IEEE programs, applying trade-off analysis to maximize impact under fixed budget constraints.</p>
             <div class="project-tech">
               <span>Financial Planning</span><span>Trade-off Analysis</span><span>IEEE</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="experience section" id="experience">
+    <div class="container">
+      <div class="section-label reveal">04 — Experience</div>
+      <h2 class="section-heading reveal">Where I've worked</h2>
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-company">Paisabazaar · New Delhi</span>
+              <span class="timeline-period">May 2025 — Present</span>
+            </div>
+            <h3 class="timeline-role">Product Manager</h3>
+            <p class="timeline-para">
+              Building lending products that improve customer acquisition, onboarding, and conversion across a multi-partner fintech platform. Led platform initiatives spanning offer discovery, application tracking, and operational automation — driving measurable uplift across partner-integrated journeys.
+            </p>
+            <div class="timeline-tech">
+              <span>Lending Products</span><span>Conversion Optimization</span><span>Partner Integrations</span><span>Funnel Analysis</span><span>Roadmapping</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-company">PwC India · New Delhi</span>
+              <span class="timeline-period">Aug 2023 — May 2025</span>
+            </div>
+            <h3 class="timeline-role">Associate Consultant</h3>
+            <p class="timeline-para">
+              Built a foundation in analytics, stakeholder management, and large-scale transformation through consulting engagements across data privacy, security operations, and enterprise SAP migration programs.
+            </p>
+            <div class="timeline-tech">
+              <span>Analytics</span><span>Stakeholder Management</span><span>PMO</span><span>Program Execution</span><span>DPDP Act</span>
             </div>
           </div>
         </div>

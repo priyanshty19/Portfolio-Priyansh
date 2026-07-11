@@ -1,3 +1,14 @@
+// ─── Theme Toggle ─────────────────────────────────────────────────
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+}
+
 // ─── Custom Cursor ────────────────────────────────────────────────
 const cursor = document.getElementById('cursor');
 const follower = document.getElementById('cursorFollower');
