@@ -324,9 +324,9 @@
         </div>
 
         <!-- Sip Stories -->
-        <div class="project-card reveal">
+        <div class="project-card featured reveal">
           <div class="project-card-inner">
-            <div class="project-num">Live Project</div>
+            <div class="project-num">Featured Project</div>
             <div class="project-top">
               <h3 class="project-title">Sip Stories</h3>
               <div class="project-links">
@@ -336,9 +336,34 @@
                 </a>
               </div>
             </div>
-            <p class="project-desc">Cocktail discovery and personal sip journal — helping enthusiasts track, rate, and explore their drink experiences. Deployed live at mysipstories.com.</p>
+            <p class="project-desc">
+              Pseudonymous social platform for India's drinking culture — full-stack, deployed live on Vercel. Spans a social feed, cocktail mixing, bar discovery, and an agentic AI bartender, wrapped in a dual-theme "Midnight Lounge" design system built under strict 21+ responsible-drinking guardrails.
+            </p>
+
+            <ul class="project-bullets">
+              <li><strong>James, the AI Bartender</strong> — Agentic in-app assistant (Groq Llama 3.3 70B) that doesn't just chat: it can change the app's vibe, navigate, and surface drink/cocktail cards via a directive action protocol, with responsible-drinking rules enforced on every action.</li>
+              <li><strong>Social Graph</strong> — Instagram-style share/send on posts, @mentions and tagging for circle members, and a live notifications bell tying together shares, tags, mentions, and RSVPs.</li>
+              <li><strong>Parties</strong> — Host a houseparty or bar night, invite circle-mates with RSVPs, or drop a public invite link that doubles as a referral — letting a newcomer join your circle and RSVP in one flow.</li>
+              <li><strong>Mix Lab & Hangover SOS</strong> — A cocktail-recipe mixing surface alongside a "when will I be sober" recovery calculator with India-specific remedies.</li>
+              <li><strong>Platform</strong> — Server-rendered feed, drinks, cocktails, bars & profile pages · role-based moderation & admin panel · dual Midnight Lounge (dark) / Ivory Cream (light) theme system.</li>
+            </ul>
+
+            <div class="project-highlights">
+              <div class="highlight-item">
+                <span class="highlight-num">69</span>
+                <span class="highlight-label">API routes powering feed, social graph, parties & the AI bartender</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-num">49</span>
+                <span class="highlight-label">Prisma data models spanning social, catalog & moderation domains</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-num">9</span>
+                <span class="highlight-label">Bespoke per-spirit SVG icons across cards, chat results & empty states</span>
+              </div>
+            </div>
             <div class="project-tech">
-              <span>Cocktail Discovery</span><span>Personal Journal</span>
+              <span>Next.js</span><span>React</span><span>TypeScript</span><span>Prisma</span><span>Supabase</span><span>Tailwind CSS</span><span>Groq AI</span><span>Vercel</span>
             </div>
           </div>
         </div>
