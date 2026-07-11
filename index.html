@@ -4,6 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- ── Theme (alternates dark/light on each visit, no-flash) ──────── -->
+  <script>
+    (function () {
+      var stored = localStorage.getItem('theme');
+      var next;
+      if (stored === 'dark') next = 'light';
+      else if (stored === 'light') next = 'dark';
+      else next = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    })();
+  </script>
+
   <!-- ── Primary SEO ──────────────────────────────────────────────── -->
   <title>Priyansh Tyagi — Product Manager | Founder of MyFinGrid</title>
   <meta name="description" content="Priyansh Tyagi is a Product Manager with 2+ years of fintech experience at Paisabazaar and PwC India. Founder of MyFinGrid — a personal finance platform built to help users track expenses, understand spending patterns, and improve financial planning." />
@@ -117,6 +130,10 @@
           </a>
         </li>
       </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark / light theme">
+        <svg class="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        <svg class="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
